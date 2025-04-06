@@ -40,6 +40,7 @@ enum {
 
 uint8_t side_mode           = 0;
 uint8_t side_light          = 3;
+uint8_t side_light_current  = 0;
 uint8_t side_speed          = 2;
 uint8_t side_rgb            = 1;
 uint8_t side_colour         = 0;
@@ -297,13 +298,17 @@ void sleep_sw_led_show(void) {
 void sys_led_show(void) {
     if (dev_info.link_mode == LINK_USB) {
         if (host_keyboard_led_state().caps_lock) {
-            set_left_rgb(0X00, 0x80, 0x80);
+            side_light_current = side_light;
+        } else {
+            side_light_current = 0;
         }
     }
 
     else {
         if (dev_info.rf_led & 0x02) {
-            set_left_rgb(0X00, 0x80, 0x80);
+            side_light_current = side_light;
+        } else {
+            side_light_current = 0;
         }
     }
 }
@@ -376,7 +381,7 @@ static void side_wave_mode_show(void) {
             count_rgb_light(wave_data_tab[play_index]);
         }
 
-        count_rgb_light(side_light_table[side_light]);
+        count_rgb_light(side_light_table[side_light_current]);
 
         for (int j = 0; j < 2; j++) {
             side_rgb_set_color(side_led_index_tab[i][j], r_temp >> 2, g_temp >> 2, b_temp >> 2);
@@ -400,7 +405,7 @@ static void side_spectrum_mode_show(void) {
     g_temp = flow_rainbow_colour_tab[side_play_point][1];
     b_temp = flow_rainbow_colour_tab[side_play_point][2];
 
-    count_rgb_light(side_light_table[side_light]);
+    count_rgb_light(side_light_table[side_light_current]);
 
     for (int i = 0; i < SIDE_LINE; i++) {
         for (int j = 0; j < 2; j++) {
@@ -438,7 +443,7 @@ static void side_breathe_mode_show(void) {
     }
 
     count_rgb_light(breathe_data_tab[play_point]);
-    count_rgb_light(side_light_table[side_light]);
+    count_rgb_light(side_light_table[side_light_current]);
 
     for (int i = 0; i < SIDE_LINE; i++) {
         for (int j = 0; j < 2; j++) {
@@ -473,7 +478,7 @@ static void side_static_mode_show(void) {
             b_temp = colour_lib[side_colour][2];
         }
 
-        count_rgb_light(side_light_table[side_light]);
+        count_rgb_light(side_light_table[side_light_current]);
 
         for (int j = 0; j < 2; j++) {
             side_rgb_set_color(side_led_index_tab[i][j], r_temp >> 2, g_temp >> 2, b_temp >> 2);
