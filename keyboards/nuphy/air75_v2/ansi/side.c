@@ -35,7 +35,6 @@ enum {
     SIDE_MIX,
     SIDE_STATIC,
     SIDE_BREATH,
-    SIDE_OFF,
 };
 
 uint8_t side_mode           = 0;
@@ -55,7 +54,6 @@ const uint8_t side_speed_table[5][5] = {
     [SIDE_MIX]    = {10, 14, 20, 28, 38}, //
     [SIDE_STATIC] = {50, 50, 50, 50, 50}, //
     [SIDE_BREATH] = {10, 14, 20, 28, 38}, //
-    [SIDE_OFF]    = {50, 50, 50, 50, 50}, //
 };
 
 const uint8_t side_light_table[6] = {
@@ -191,14 +189,14 @@ void side_colour_control(uint8_t dir) {
 void side_mode_control(uint8_t dir) {
     if (dir) {
         side_mode++;
-        if (side_mode > SIDE_OFF) {
+        if (side_mode > SIDE_BREATH) {
             side_mode = 0;
         }
     } else {
         if (side_mode > 0) {
             side_mode--;
         } else {
-            side_mode = SIDE_OFF;
+            side_mode = SIDE_BREATH;
         }
     }
     side_play_point          = 0;
@@ -480,27 +478,6 @@ static void side_static_mode_show(void) {
 
         count_rgb_light(side_light_table[side_light_current]);
 
-        for (int j = 0; j < 2; j++) {
-            side_rgb_set_color(side_led_index_tab[i][j], r_temp >> 2, g_temp >> 2, b_temp >> 2);
-        }
-    }
-}
-
-/**
- * @brief  side_off_mode_show.
- */
-static void side_off_mode_show(void) {
-    if (side_play_cnt <= side_speed_table[side_mode][side_speed])
-        return;
-    else
-        side_play_cnt -= side_speed_table[side_mode][side_speed];
-    if (side_play_cnt > 20) side_play_cnt = 0;
-
-    r_temp = 0x00;
-    g_temp = 0x00;
-    b_temp = 0x00;
-
-    for (int i = 0; i < SIDE_LINE; i++) {
         for (int j = 0; j < 2; j++) {
             side_rgb_set_color(side_led_index_tab[i][j], r_temp >> 2, g_temp >> 2, b_temp >> 2);
         }
@@ -859,9 +836,6 @@ void side_led_show(void) {
             break;
         case SIDE_STATIC:
             side_static_mode_show();
-            break;
-        case SIDE_OFF:
-            side_off_mode_show();
             break;
     }
 
