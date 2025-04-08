@@ -710,6 +710,124 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case WIN_SNIP:
+            if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_LSFT);
+                register_code(KC_S);
+                wait_ms(10);
+                unregister_code(KC_S);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case WIN_WIN_PSCR:
+            if (record->event.pressed) {
+                tap_code16(G(KC_PSCR));
+            }
+            return false;
+
+        case WIN_ALT_PSCR:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_PSCR);
+                wait_ms(10);
+                unregister_code(KC_PSCR);
+                unregister_code(KC_LALT);
+            }
+            return false;
+
+        case WIN_APP_PRV:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_LSFT);          
+                register_code(KC_ESC);
+                wait_ms(10);
+                unregister_code(KC_ESC);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LALT);
+            }
+            return false;
+
+        case WIN_APP_NXT:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_ESC);
+                wait_ms(10);
+                unregister_code(KC_ESC);
+                unregister_code(KC_LALT);
+            }
+            return false;
+
+        case WIN_APP_SWITCH:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_TAB);
+                wait_ms(10);
+                unregister_code(KC_TAB);
+                unregister_code(KC_LALT);
+            }
+            return false;
+
+        case WIN_DESK_PRV:
+            if (record->event.pressed) {
+                tap_code16(G(C(KC_LEFT)));
+            }
+            return false;
+
+        case WIN_DESK_NXT:
+            if (record->event.pressed) {
+                tap_code16(G(C(KC_RGHT)));
+            }
+            return false;
+
+        case WIN_DESK_SHOW:
+            if (record->event.pressed) {
+                tap_code16(G(KC_D));
+            }
+            return false;
+
+        case WIN_TASK_VIEW:
+            if (record->event.pressed) {
+                tap_code16(G(KC_TAB));
+            }
+            return false;
+
+        case WIN_NOTIF:
+            if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_N);
+                wait_ms(10);
+                unregister_code(KC_N);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case WIN_WIDGETS:
+            if (record->event.pressed) {
+                tap_code16(G(KC_W));
+            }
+            return false;
+
+        case WIN_COPILOT:
+            if (record->event.pressed) {
+                tap_code16(G(KC_C));
+            }
+            return false;
+
+        case WIN_TASK_MAN:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                register_code(KC_LSFT);
+                register_code(KC_ESC);
+                wait_ms(10);
+                unregister_code(KC_ESC);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+
         default:
             return true;
     }

@@ -202,6 +202,62 @@
 	{
 		"name": "Next\nSingle",
 		"title": "Next Single Tap"
+	},
+	{
+		"name": "Snip\nTool",
+		"title": "Snipping Tool"
+	},
+	{
+		"name": "Win\nPrScr",
+		"title": "Win + PrintScreen"
+	},
+	{
+		"name": "Alt\nPrScr",
+		"title": "Alt + PrintScreen"
+	},
+	{
+		"name": "App\n<",
+		"title": "Previous App"
+	},
+	{
+		"name": "App\n>",
+		"title": "Next App"
+	},
+	{
+		"name": "Switch\nApp",
+		"title": "Switch App"
+	},
+	{
+		"name": "Desk\n<",
+		"title": "Previous Desktop"
+	},
+	{
+		"name": "Desk\n>",
+		"title": "Next Desktop"
+	},
+	{
+		"name": "Show\nDesk",
+		"title": "Show Desktop"
+	},
+	{
+		"name": "Task\nView",
+		"title": "Task View"
+	},
+	{
+		"name": "Notif",
+		"title": "Notifications"
+	},
+	{
+		"name": "Widgets",
+		"title": "Widgets"
+	},
+	{
+		"name": "Copilot",
+		"title": "Copilot"
+	},
+	{
+		"name": "Task\nMan",
+		"title": "Task Manager"
 	}
 ]
 }

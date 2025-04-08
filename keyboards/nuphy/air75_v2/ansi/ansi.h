@@ -50,6 +50,24 @@ enum custom_keycodes {
 
     MPREV_SINGLE,
     MNEXT_SINGLE,
+
+    WIN_SNIP,
+    WIN_WIN_PSCR,
+    WIN_ALT_PSCR,
+
+    WIN_APP_PRV,
+    WIN_APP_NXT,
+    WIN_APP_SWITCH,
+
+    WIN_DESK_PRV,
+    WIN_DESK_NXT,
+    WIN_DESK_SHOW,
+    WIN_TASK_VIEW,
+
+    WIN_NOTIF,
+    WIN_WIDGETS,
+    WIN_COPILOT,
+    WIN_TASK_MAN,
 };
 
 typedef enum {
