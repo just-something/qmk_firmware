@@ -194,6 +194,14 @@
 	{
 		"name": "RGB\nTest",
 		"title": "RGB Test"
+	},
+	{
+		"name": "Previous\nSingle",
+		"title": "Previous Single Tap"
+	},
+	{
+		"name": "Next\nSingle",
+		"title": "Next Single Tap"
 	}
 ]
 }

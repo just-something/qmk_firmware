@@ -694,6 +694,22 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case MPREV_SINGLE:
+            if (record->event.pressed) {
+                register_code(KC_MPRV);
+                wait_ms(10);
+                unregister_code(KC_MPRV);
+            }
+            return false;
+
+        case MNEXT_SINGLE:
+            if (record->event.pressed) {
+                register_code(KC_MNXT);
+                wait_ms(10);
+                unregister_code(KC_MNXT);
+            }
+            return false;
+
         default:
             return true;
     }
