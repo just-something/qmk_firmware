@@ -186,6 +186,14 @@
     {
 		"name": "Mac\nDND",
 		"title": "Mac DND"
+	},
+	{
+		"name": "Bat\nNum",
+		"title": "Battery Show Numeric"
+	},
+	{
+		"name": "RGB\nTest",
+		"title": "RGB Test"
 	}
 ]
 }
