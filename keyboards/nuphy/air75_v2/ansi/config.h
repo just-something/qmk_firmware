@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define NO_PRINT
+#define NO_DEBUG
+
 #define DEV_MODE_PIN                        C0
 #define SYS_MODE_PIN                        C1
 #define DC_BOOST_PIN                        C2
