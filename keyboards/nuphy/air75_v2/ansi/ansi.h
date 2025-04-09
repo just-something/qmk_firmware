@@ -50,6 +50,7 @@ enum custom_keycodes {
 
     MPREV_SINGLE,
     MNEXT_SINGLE,
+    KC_INS_SINGLE,
 
     WIN_SNIP,
     WIN_WIN_PSCR,

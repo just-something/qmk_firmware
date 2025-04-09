@@ -710,6 +710,14 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case KC_INS_SINGLE:
+            if (record->event.pressed) {
+                register_code(KC_INS);
+                wait_ms(10);
+                unregister_code(KC_INS);
+            }
+            return false;
+
         case WIN_SNIP:
             if (record->event.pressed) {
                 register_code(KC_LGUI);
