@@ -498,7 +498,7 @@ void rf_led_show(void) {
             b_temp = 0x00;
         } else if (dev_info.link_mode == LINK_USB) {
             r_temp = 0x80;
-            g_temp = 0x80;
+            g_temp = 0x60;
             b_temp = 0x00;
         } else {
             r_temp = 0x00;
@@ -592,19 +592,19 @@ void bat_percent_led(uint8_t bat_percent) {
         bat_r = 0x80, bat_g = 0, bat_b = 0;
     } else if (bat_percent <= 20) {
         bat_end_led = 1;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
     } else if (bat_percent <= 40) {
         bat_end_led = 2;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
     } else if (bat_percent <= 60) {
         bat_end_led = 3;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
     } else if (bat_percent <= 80) {
         bat_end_led = 4;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
     } else if (bat_percent <= 95) {
         bat_end_led = 5;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
     } else {
         bat_end_led = 5;
         bat_r = 0, bat_g = 0x80, bat_b = 0;
@@ -683,7 +683,7 @@ void bat_led_show(void) {
                 light_point_playing(0, 1, BREATHE_TAB_LEN, &play_point);
             }
             r_temp = 0x80;
-            g_temp = 0x40;
+            g_temp = 0x20;
             b_temp = 0x00;
             count_rgb_light(breathe_data_tab[play_point]);
             set_right_rgb(r_temp, g_temp, b_temp);
