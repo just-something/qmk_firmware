@@ -250,7 +250,7 @@ void sys_sw_led_show(void) {
         } else {
             set_right_rgb(0x00, 0x00, 0x00);
         }
-        if (timer_elapsed32(sys_show_timer) >= 3000) {
+        if (timer_elapsed32(sys_show_timer) >= 2990) {
             sys_show_flag = false;
         }
     }
@@ -284,7 +284,7 @@ void sleep_sw_led_show(void) {
         } else {
             set_right_rgb(0x00, 0x00, 0x00);
         }
-        if (timer_elapsed32(sleep_show_timer) >= 3000) {
+        if (timer_elapsed32(sleep_show_timer) >= 2990) {
             sleep_show_flag = false;
         }
     }
