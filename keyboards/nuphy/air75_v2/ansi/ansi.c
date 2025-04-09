@@ -836,6 +836,183 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case LT_PLAY_LAUNCH:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_MPLY);
+            } else if (record->event.pressed) {
+                tap_code16(KC_MSEL);
+            }
+            return false;
+
+        case LT_PSCR_SNIP:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_PSCR);
+                wait_ms(10);
+                unregister_code(KC_PSCR);
+            } else if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_LSFT);
+                register_code(KC_S);
+                wait_ms(10);
+                unregister_code(KC_S);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case LT_PSCR_WINPSCR:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_PSCR);
+                wait_ms(10);
+                unregister_code(KC_PSCR);
+            } else if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_PSCR);
+                wait_ms(10);
+                unregister_code(KC_PSCR);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case LT_PSCR_ALTPSCR:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_PSCR);
+                wait_ms(10);
+                unregister_code(KC_PSCR);
+            } else if (record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_PSCR);
+                wait_ms(10);
+                unregister_code(KC_PSCR);
+                unregister_code(KC_LALT);
+            }
+            return false;
+
+        case LT_PREVAPP_DESK:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_LSFT);       
+                register_code(KC_ESC);
+                wait_ms(10);
+                unregister_code(KC_ESC);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LALT);
+            } else if (record->event.pressed) {
+                tap_code16(G(C(KC_LEFT)));
+            }
+            return false;
+
+        case LT_NEXTAPP_DESK:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_LALT);     
+                register_code(KC_ESC);
+                wait_ms(10);
+                unregister_code(KC_ESC);
+                unregister_code(KC_LALT);
+            } else if (record->event.pressed) {
+                tap_code16(G(C(KC_RGHT)));
+            }
+            return false;
+
+
+        case LT_SWITCH_TASKV:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_TAB);
+                wait_ms(10);
+                unregister_code(KC_TAB);
+                unregister_code(KC_LALT);
+            } else if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_TAB);
+                wait_ms(10);
+                unregister_code(KC_TAB);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case LT_SWITCH_DESK:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_LALT);
+                register_code(KC_TAB);
+                wait_ms(10);
+                unregister_code(KC_TAB);
+                unregister_code(KC_LALT);
+            } else if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_D);
+                wait_ms(10);
+                unregister_code(KC_D);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case LT_TASKV_DESK:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_TAB);
+                wait_ms(10);
+                unregister_code(KC_TAB);
+                unregister_code(KC_LGUI);
+            } else if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_D);
+                wait_ms(10);
+                unregister_code(KC_D);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case LT_WIDGET_NOTIF:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_W);
+                wait_ms(10);
+                unregister_code(KC_W);
+                unregister_code(KC_LGUI);
+            } else if (record->event.pressed) {
+                register_code(KC_LGUI);
+                register_code(KC_N);
+                wait_ms(10);
+                unregister_code(KC_N);
+                unregister_code(KC_LGUI);
+            }
+            return false;
+
+        case LT_DEL_TASKMAN:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_DEL);
+            } else if (record->event.pressed) {
+                register_code(KC_LCTL);
+                register_code(KC_LSFT);
+                register_code(KC_ESC);
+                wait_ms(10);
+                unregister_code(KC_ESC);
+                unregister_code(KC_LSFT);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+            
+        case LT_INSERT_RGB:
+            if (record->tap.count && record->event.pressed) {
+                register_code(KC_INS);
+                wait_ms(10);
+                unregister_code(KC_INS);
+            } else if (record->event.pressed) {
+                tap_code16(RGB_TOG);
+            }
+            return false;
+            
+        case LT_NO_INSERT:
+            if (record->tap.count && record->event.pressed) {
+                return false;
+            } else if (record->event.pressed) {
+                register_code(KC_INS);
+                wait_ms(10);
+                unregister_code(KC_INS);
+            }
+            return false;
+            
         default:
             return true;
     }
