@@ -598,13 +598,13 @@ void bat_percent_led(uint8_t bat_percent) {
         bat_r = 0x80, bat_g = 0x20, bat_b = 0;
     } else if (bat_percent <= 60) {
         bat_end_led = 3;
-        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
     } else if (bat_percent <= 80) {
         bat_end_led = 4;
-        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
     } else if (bat_percent <= 95) {
         bat_end_led = 5;
-        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
+        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
     } else {
         bat_end_led = 5;
         bat_r = 0, bat_g = 0x80, bat_b = 0;
