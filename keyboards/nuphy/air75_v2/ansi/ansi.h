@@ -69,25 +69,6 @@ enum custom_keycodes {
     WIN_WIDGETS,
     WIN_COPILOT,
     WIN_TASK_MAN,
-
-    LT_PLAY_LAUNCH,
-
-    LT_PSCR_SNIP,
-    LT_PSCR_WINPSCR,
-    LT_PSCR_ALTPSCR,
-
-    LT_PREVAPP_DESK,
-    LT_NEXTAPP_DESK,
-
-    LT_SWITCH_TASKV,
-    LT_SWITCH_DESK,
-    LT_TASKV_DESK,
-
-    LT_WIDGET_NOTIF,
-    LT_DEL_TASKMAN,
-
-    LT_INSERT_RGB,
-    LT_NO_INSERT,
 };
 
 typedef enum {
@@ -110,25 +91,6 @@ typedef enum {
 
 } TYPE_RX_STATE;
 
-
-#define LT_PLAY_LAUNCH          LT(0, KC_MPLY)
-
-#define LT_PSCR_SNIP            LT(0, KC_PSCR)
-#define LT_PSCR_WINPSCR         LT(1, KC_PSCR)
-#define LT_PSCR_ALTPSCR         LT(2, KC_PSCR)
-
-#define LT_PREVAPP_DESK         LT(0, KC_LEFT)
-#define LT_NEXTAPP_DESK         LT(0, KC_RGHT)
-
-#define LT_SWITCH_TASKV         LT(0, KC_LWIN)
-#define LT_SWITCH_DESK          LT(1, KC_LWIN)
-#define LT_TASKV_DESK           LT(2, KC_LWIN)
-
-#define LT_WIDGET_NOTIF         LT(0, KC_W)
-#define LT_DEL_TASKMAN          LT(0, KC_DEL)
-
-#define LT_INSERT_RGB           LT(0, KC_INS)
-#define LT_NO_INSERT            LT(1, KC_INS)
 
 #define RF_IDLE                 0
 #define RF_PAIRING              1
