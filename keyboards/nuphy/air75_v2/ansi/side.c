@@ -37,12 +37,12 @@ enum {
     SIDE_BREATH,
 };
 
-uint8_t side_mode           = 0;
-uint8_t side_light          = 3;
+uint8_t side_mode           = RGB_SIDE_DEFAULT_MODE;
+uint8_t side_light          = RGB_SIDE_DEFAULT_LIGHT;
 uint8_t side_light_current  = 0;
-uint8_t side_speed          = 2;
-uint8_t side_rgb            = 1;
-uint8_t side_colour         = 0;
+uint8_t side_speed          = RGB_SIDE_DEFAULT_SPD;
+uint8_t side_rgb            = RGB_SIDE_DEFAULT_RGB;
+uint8_t side_colour         = RGB_SIDE_DEFAULT_CLR;
 uint8_t side_play_point     = 0;
 uint8_t side_play_cnt       = 0;
 uint32_t side_play_timer    = 0;
@@ -725,11 +725,11 @@ void device_reset_show(void) {
  * @brief  device_reset_init.
  */
 void device_reset_init(void) {
-    side_mode       = 0;
-    side_light      = 3;
-    side_speed      = 2;
-    side_rgb        = 1;
-    side_colour     = 0;
+    side_mode       = RGB_SIDE_DEFAULT_MODE;
+    side_light      = RGB_SIDE_DEFAULT_LIGHT;
+    side_speed      = RGB_SIDE_DEFAULT_SPD;
+    side_rgb        = RGB_SIDE_DEFAULT_RGB;
+    side_colour     = RGB_SIDE_DEFAULT_CLR;
     side_play_point = 0;
 
     side_play_cnt   = 0;

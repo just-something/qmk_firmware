@@ -51,6 +51,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define RGB_MATRIX_SLEEP
 
+#define RGB_SIDE_DEFAULT_MODE               0
+#define RGB_SIDE_DEFAULT_LIGHT              3
+#define RGB_SIDE_DEFAULT_SPD                2
+#define RGB_SIDE_DEFAULT_RGB                1
+#define RGB_SIDE_DEFAULT_CLR                0
+
 #define WS2812_TIMING       850
 #define WS2812_T1H          700
 #define WS2812_T0H          150
