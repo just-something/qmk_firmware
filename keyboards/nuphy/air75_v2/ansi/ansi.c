@@ -43,6 +43,7 @@ bool f_rf_sts_sysc_ok   = 0;
 bool f_rf_new_adv_ok    = 0;
 bool f_rf_reset         = 0;
 bool f_wakeup_prepare   = 0;
+bool f_sleep_press      = 0;
 
 uint16_t       rf_linking_time       = 0;
 uint16_t       rf_link_show_time     = 0;
@@ -54,6 +55,7 @@ uint16_t       rf_sw_press_delay     = 0;
 uint16_t rgb_test_press_delay        = 0;
 uint8_t        host_mode             = 0;
 host_driver_t *m_host_driver         = 0;
+uint16_t       sleep_press_delay     = 0;
 
 extern bool               f_rf_new_adv_ok;
 extern report_keyboard_t *keyboard_report;
@@ -120,6 +122,19 @@ void long_press_key(void) {
 
     if (timer_elapsed32(long_press_timer) < 100) return;
     long_press_timer = timer_read32();
+
+    if (f_sleep_press){
+        sleep_press_delay++;
+        if (sleep_press_delay >= SLEEP_MODE_PRESS_DELAY) {
+            f_sleep_press = 0;
+            if(user_config.sleep_enable) user_config.sleep_enable = false;
+            else user_config.sleep_enable = true;
+            f_sleep_show       = 1;
+            eeconfig_update_user_datablock(&user_config);
+        }
+    } else {
+        sleep_press_delay = 0;
+    }
 
     // Open a new RF device
     if (f_rf_sw_press) {
@@ -665,10 +680,10 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
         case SLEEP_MODE:
             if (record->event.pressed) {
-                if(user_config.sleep_enable) user_config.sleep_enable = false;
-                else user_config.sleep_enable = true;
-                f_sleep_show       = 1;
-                eeconfig_update_user_datablock(&user_config);
+                f_sleep_press = 1;
+                break_all_key();
+            } else {
+                f_sleep_press = 0;
             }
             return false;
 
