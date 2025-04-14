@@ -569,7 +569,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 register_code(KC_LGUI);
                 register_code(KC_SPACE);
-                wait_ms(50);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_LGUI);
                 unregister_code(KC_SPACE);
             }
@@ -604,7 +604,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LGUI);
                 register_code(KC_LSFT);
                 register_code(KC_3);
-                wait_ms(50);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_3);
                 unregister_code(KC_LSFT);
                 unregister_code(KC_LGUI);
@@ -617,7 +617,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     register_code(KC_LGUI);
                     register_code(KC_LSFT);
                     register_code(KC_S);
-                    wait_ms(50);
+                    wait_ms(TAP_CODE_DELAY);
                     unregister_code(KC_S);
                     unregister_code(KC_LSFT);
                     unregister_code(KC_LGUI);
@@ -627,7 +627,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     register_code(KC_LGUI);
                     register_code(KC_LSFT);
                     register_code(KC_4);
-                    wait_ms(50);
+                    wait_ms(TAP_CODE_DELAY);
                     unregister_code(KC_4);
                     unregister_code(KC_LSFT);
                     unregister_code(KC_LGUI);
@@ -714,7 +714,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
         case MPREV_SINGLE:
             if (record->event.pressed) {
                 register_code(KC_MPRV);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_MPRV);
             }
             return false;
@@ -722,7 +722,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
         case MNEXT_SINGLE:
             if (record->event.pressed) {
                 register_code(KC_MNXT);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_MNXT);
             }
             return false;
@@ -730,7 +730,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
         case KC_INS_SINGLE:
             if (record->event.pressed) {
                 register_code(KC_INS);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_INS);
             }
             return false;
@@ -740,7 +740,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LGUI);
                 register_code(KC_LSFT);
                 register_code(KC_S);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_S);
                 unregister_code(KC_LSFT);
                 unregister_code(KC_LGUI);
@@ -757,7 +757,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 register_code(KC_LALT);
                 register_code(KC_PSCR);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_PSCR);
                 unregister_code(KC_LALT);
             }
@@ -768,7 +768,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LALT);
                 register_code(KC_LSFT);          
                 register_code(KC_ESC);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_ESC);
                 unregister_code(KC_LSFT);
                 unregister_code(KC_LALT);
@@ -779,7 +779,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 register_code(KC_LALT);
                 register_code(KC_ESC);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_ESC);
                 unregister_code(KC_LALT);
             }
@@ -789,7 +789,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 register_code(KC_LALT);
                 register_code(KC_TAB);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_TAB);
                 unregister_code(KC_LALT);
             }
@@ -823,7 +823,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 register_code(KC_LGUI);
                 register_code(KC_N);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_N);
                 unregister_code(KC_LGUI);
             }
@@ -846,7 +846,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LCTL);
                 register_code(KC_LSFT);
                 register_code(KC_ESC);
-                wait_ms(10);
+                wait_ms(TAP_CODE_DELAY);
                 unregister_code(KC_ESC);
                 unregister_code(KC_LSFT);
                 unregister_code(KC_LCTL);
