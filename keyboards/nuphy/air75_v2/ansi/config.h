@@ -57,6 +57,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_SIDE_DEFAULT_RGB                1
 #define RGB_SIDE_DEFAULT_CLR                0
 
+#define CAPS_DEFAULT_MODE                   13
+
 #define WS2812_TIMING       850
 #define WS2812_T1H          700
 #define WS2812_T0H          150

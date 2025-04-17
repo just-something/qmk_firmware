@@ -43,6 +43,7 @@ uint8_t side_light_current  = 0;
 uint8_t side_speed          = RGB_SIDE_DEFAULT_SPD;
 uint8_t side_rgb            = RGB_SIDE_DEFAULT_RGB;
 uint8_t side_colour         = RGB_SIDE_DEFAULT_CLR;
+uint8_t caps_mode           = CAPS_DEFAULT_MODE;
 uint8_t side_play_point     = 0;
 uint8_t side_play_cnt       = 0;
 uint32_t side_play_timer    = 0;
@@ -120,6 +121,7 @@ void side_light_control(uint8_t dir) {
         } else
             side_light--;
     }
+    side_light_current = side_light;
     user_config.ee_side_light = side_light;
     eeconfig_update_user_datablock(&user_config);
 }
@@ -294,20 +296,24 @@ void sleep_sw_led_show(void) {
  * @brief  sys_led_show.
  */
 void sys_led_show(void) {
-    if (dev_info.link_mode == LINK_USB) {
-        if (host_keyboard_led_state().caps_lock) {
+    if (((dev_info.link_mode == LINK_USB) && (host_keyboard_led_state().caps_lock)) || (dev_info.rf_led & 0x02)) {
+        if (caps_mode == 0) {
             side_light_current = side_light;
+        } else if (caps_mode < 9) {
+            int num = caps_mode - 1;
+            rgb_matrix_set_color(59, colour_lib[num][0],colour_lib[num][1],colour_lib[num][2]);
+        } else if (caps_mode < 17) {
+            int num = caps_mode - 9;
+            set_left_rgb(colour_lib[num][0]/2,colour_lib[num][1]/2,colour_lib[num][2]/2);
         } else {
-            side_light_current = 0;
+            int num = caps_mode - 17;
+            set_left_rgb(colour_lib[num][0]/2,colour_lib[num][1]/2,colour_lib[num][2]/2);
+            set_right_rgb(colour_lib[num][0]/2,colour_lib[num][1]/2,colour_lib[num][2]/2);
         }
-    }
-
-    else {
-        if (dev_info.rf_led & 0x02) {
-            side_light_current = side_light;
-        } else {
-            side_light_current = 0;
-        }
+    } else if (caps_mode == 0) {
+        side_light_current = 0;
+    } else {
+        side_light_current = side_light;
     }
 }
 
@@ -730,6 +736,7 @@ void device_reset_init(void) {
     side_speed      = RGB_SIDE_DEFAULT_SPD;
     side_rgb        = RGB_SIDE_DEFAULT_RGB;
     side_colour     = RGB_SIDE_DEFAULT_CLR;
+    caps_mode       = CAPS_DEFAULT_MODE;
     side_play_point = 0;
 
     side_play_cnt   = 0;
@@ -748,6 +755,7 @@ void device_reset_init(void) {
     user_config.ee_side_speed           = side_speed;
     user_config.ee_side_rgb             = side_rgb;
     user_config.ee_side_colour          = side_colour;
+    user_config.caps_mode               = caps_mode;
     user_config.sleep_enable            = true;
     eeconfig_update_user_datablock(&user_config);
 }

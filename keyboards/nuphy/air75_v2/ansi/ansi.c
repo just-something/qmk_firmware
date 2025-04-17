@@ -68,6 +68,7 @@ extern uint8_t            side_light;
 extern uint8_t            side_speed;
 extern uint8_t            side_rgb;
 extern uint8_t            side_colour;
+extern uint8_t            caps_mode;
 
 void    dev_sts_sync(void);
 void    rf_uart_init(void);
@@ -86,6 +87,7 @@ void    bat_led_close(void);
 void    num_led_show(void);
 void    rgb_test_show(void);
 void    bat_num_show(bool);
+void    caps_mode_change(void);
 
 /**
  * @brief  gpio initial.
@@ -447,6 +449,7 @@ void londing_eeprom_data(void) {
         user_config.ee_side_speed           = side_speed;
         user_config.ee_side_rgb             = side_rgb;
         user_config.ee_side_colour          = side_colour;
+        user_config.caps_mode               = caps_mode;
         user_config.sleep_enable            = true;
         eeconfig_update_user_datablock(&user_config);
     } else {
@@ -455,6 +458,7 @@ void londing_eeprom_data(void) {
         side_speed  = user_config.ee_side_speed;
         side_rgb    = user_config.ee_side_rgb;
         side_colour = user_config.ee_side_colour;
+        caps_mode   = user_config.caps_mode;
     }
 }
 
@@ -711,6 +715,12 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case CAPS_MODE:
+            if (record->event.pressed) {
+                caps_mode_change();
+            }
+            return false;
+
         case MPREV_SINGLE:
             if (record->event.pressed) {
                 register_code(KC_MPRV);
@@ -871,6 +881,16 @@ void bat_num_show(bool show) {
         }
         f_bat_num_show = 0;
     }
+}
+
+void caps_mode_change(void) {
+    if(caps_mode == 24) {
+        caps_mode = 0;
+    } else {
+        caps_mode++;
+    }
+    user_config.caps_mode = caps_mode;
+    eeconfig_update_user_datablock(&user_config);
 }
 
 bool rgb_matrix_indicators_kb(void)

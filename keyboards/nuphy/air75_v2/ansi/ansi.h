@@ -48,6 +48,7 @@ enum custom_keycodes {
     BAT_NUM,
     RGB_TEST,
 
+    CAPS_MODE,
     MPREV_SINGLE,
     MNEXT_SINGLE,
     KC_INS_SINGLE,
@@ -189,6 +190,7 @@ typedef struct
     uint8_t ee_side_speed;
     uint8_t ee_side_rgb;
     uint8_t ee_side_colour;
+    uint8_t caps_mode;
     uint8_t sleep_enable;
     uint8_t retain1;
     uint8_t retain2;
