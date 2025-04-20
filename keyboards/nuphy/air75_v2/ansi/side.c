@@ -546,11 +546,11 @@ void bat_num_led(uint8_t bat_percent)
     uint8_t r, g, b;
 
     // set color
-    if (bat_percent <= 15) {
+    if (bat_percent <= 20) {
         r = 0xff; g = 0x00; b = 0x00;
     }
     else if (bat_percent <= 50) {
-        r = 0xff; g = 0x40; b = 0x00;
+        r = 0xff; g = 0x7a; b = 0x00;
     }
     else if (bat_percent <= 80) {
         r = 0xff; g = 0xff; b = 0x00;
@@ -560,16 +560,13 @@ void bat_num_led(uint8_t bat_percent)
     }
 
     // set percent
-    if (bat_percent >= 1) rgb_matrix_set_color(29, r, g, b);
-    if (bat_percent > 10) rgb_matrix_set_color(28, r, g, b);
-    if (bat_percent > 20) rgb_matrix_set_color(27, r, g, b);
-    if (bat_percent > 30) rgb_matrix_set_color(26, r, g, b);
-    if (bat_percent > 40) rgb_matrix_set_color(25, r, g, b);
-    if (bat_percent > 50) rgb_matrix_set_color(24, r, g, b);
-    if (bat_percent > 60) rgb_matrix_set_color(23, r, g, b);
-    if (bat_percent > 70) rgb_matrix_set_color(22, r, g, b);
-    if (bat_percent > 80) rgb_matrix_set_color(21, r, g, b);
-    if (bat_percent > 90) rgb_matrix_set_color(20, r, g, b);
+    for (int i = 0; i <= 9; i++){
+        if (bat_percent > (i * 10)) {
+            rgb_matrix_set_color(29-i, r, g, b);
+        } else {
+            rgb_matrix_set_color(29-i, 0x00, 0x00, 0x00);
+        }
+    }
 }
 
 void num_led_show(void)
@@ -594,23 +591,20 @@ void bat_percent_led(uint8_t bat_percent) {
     uint8_t bat_end_led = 0;
     uint8_t bat_r, bat_g, bat_b;
 
-    if (bat_percent <= 15) {
+    if (bat_percent <= 20) {
         bat_end_led = 0;
         bat_r = colour_lib[0][0]/2, bat_g = colour_lib[0][1]/2, bat_b = colour_lib[0][2]/2;
-    } else if (bat_percent <= 20) {
+    } else if (bat_percent <= 35) {
         bat_end_led = 1;
         bat_r = colour_lib[1][0]/2, bat_g = colour_lib[1][1]/2, bat_b = colour_lib[1][2]/2;
-    } else if (bat_percent <= 40) {
+    } else if (bat_percent <= 50) {
         bat_end_led = 2;
         bat_r = colour_lib[1][0]/2, bat_g = colour_lib[1][1]/2, bat_b = colour_lib[1][2]/2;
-    } else if (bat_percent <= 60) {
+    } else if (bat_percent <= 65) {
         bat_end_led = 3;
         bat_r = colour_lib[2][0]/2, bat_g = colour_lib[2][1]/2, bat_b = colour_lib[2][2]/2;
     } else if (bat_percent <= 80) {
         bat_end_led = 4;
-        bat_r = colour_lib[2][0]/2, bat_g = colour_lib[2][1]/2, bat_b = colour_lib[2][2]/2;
-    } else if (bat_percent <= 95) {
-        bat_end_led = 5;
         bat_r = colour_lib[2][0]/2, bat_g = colour_lib[2][1]/2, bat_b = colour_lib[2][2]/2;
     } else {
         bat_end_led = 5;
