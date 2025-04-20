@@ -44,6 +44,7 @@ uint8_t side_speed          = RGB_SIDE_DEFAULT_SPD;
 uint8_t side_rgb            = RGB_SIDE_DEFAULT_RGB;
 uint8_t side_colour         = RGB_SIDE_DEFAULT_CLR;
 uint8_t caps_mode           = CAPS_DEFAULT_MODE;
+uint8_t rgb_dimmed          = false;
 uint8_t side_play_point     = 0;
 uint8_t side_play_cnt       = 0;
 uint32_t side_play_timer    = 0;
@@ -737,6 +738,7 @@ void device_reset_init(void) {
     side_rgb        = RGB_SIDE_DEFAULT_RGB;
     side_colour     = RGB_SIDE_DEFAULT_CLR;
     caps_mode       = CAPS_DEFAULT_MODE;
+    rgb_dimmed      = false;
     side_play_point = 0;
 
     side_play_cnt   = 0;
@@ -756,6 +758,7 @@ void device_reset_init(void) {
     user_config.ee_side_rgb             = side_rgb;
     user_config.ee_side_colour          = side_colour;
     user_config.caps_mode               = caps_mode;
+    user_config.rgb_dimmed              = rgb_dimmed;
     user_config.sleep_enable            = true;
     eeconfig_update_user_datablock(&user_config);
 }

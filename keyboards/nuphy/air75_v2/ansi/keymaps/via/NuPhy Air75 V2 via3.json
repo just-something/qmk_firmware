@@ -200,6 +200,10 @@
 		"title": "Change CapsLock indication"
 	},
 	{
+		"name": "RGB\nDim",
+		"title": "Dim RGB Lighting"
+	},
+	{
 		"name": "Previous\nSingle",
 		"title": "Previous Single Tap"
 	},

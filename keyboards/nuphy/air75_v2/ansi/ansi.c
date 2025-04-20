@@ -68,6 +68,7 @@ extern uint8_t            side_speed;
 extern uint8_t            side_rgb;
 extern uint8_t            side_colour;
 extern uint8_t            caps_mode;
+extern uint8_t            rgb_dimmed;
 
 void    dev_sts_sync(void);
 void    rf_uart_init(void);
@@ -448,6 +449,7 @@ void londing_eeprom_data(void) {
         user_config.ee_side_rgb             = side_rgb;
         user_config.ee_side_colour          = side_colour;
         user_config.caps_mode               = caps_mode;
+        user_config.rgb_dimmed              = false;
         user_config.sleep_enable            = true;
         eeconfig_update_user_datablock(&user_config);
     } else {
@@ -457,6 +459,7 @@ void londing_eeprom_data(void) {
         side_rgb    = user_config.ee_side_rgb;
         side_colour = user_config.ee_side_colour;
         caps_mode   = user_config.caps_mode;
+        rgb_dimmed  = user_config.rgb_dimmed;
     }
 }
 
@@ -713,6 +716,14 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case RGB_DIM:
+            if (record->event.pressed) {
+                rgb_dimmed = !rgb_dimmed;
+                user_config.rgb_dimmed = rgb_dimmed;
+                eeconfig_update_user_datablock(&user_config);
+            }
+            return false;
+            
         case CAPS_MODE:
             if (record->event.pressed) {
                 caps_mode_change();
@@ -879,6 +890,9 @@ void caps_mode_change(void) {
 
 bool rgb_matrix_indicators_kb(void)
 {
+    if(rgb_dimmed) {
+        rgb_matrix_set_color_all(0x00, 0x00, 0x00);
+    }
     if(!rgb_matrix_indicators_user()){
         return false;
     }
