@@ -240,13 +240,13 @@ void sys_sw_led_show(void) {
 
     if (sys_show_flag) {
         if (dev_info.sys_sw_state == SYS_SW_MAC) {
-            r_temp = 0x80;
-            g_temp = 0x80;
-            b_temp = 0x80;
+            r_temp = colour_lib[7][0]/2;
+            g_temp = colour_lib[7][1]/2;
+            b_temp = colour_lib[7][2]/2;
         } else {
-            r_temp = 0x00;
-            g_temp = 0x00;
-            b_temp = 0x80;
+            r_temp = colour_lib[5][0]/2;
+            g_temp = colour_lib[5][1]/2;
+            b_temp = colour_lib[5][2]/2;
         }
         if ((timer_elapsed32(sys_show_timer) / 500) % 2 == 0) {
             set_right_rgb(r_temp, g_temp, b_temp);
@@ -274,13 +274,13 @@ void sleep_sw_led_show(void) {
 
     if (sleep_show_flag) {
         if (user_config.sleep_enable) {
-            r_temp = 0x00;
-            g_temp = 0x80;
-            b_temp = 0x00;
+            r_temp = colour_lib[3][0]/2;
+            g_temp = colour_lib[3][1]/2;
+            b_temp = colour_lib[3][2]/2;
         } else {
-            r_temp = 0x80;
-            g_temp = 0x00;
-            b_temp = 0x00;
+            r_temp = colour_lib[0][0]/2;
+            g_temp = colour_lib[0][1]/2;
+            b_temp = colour_lib[0][2]/2;
         }
         if ((timer_elapsed32(sleep_show_timer) / 500) % 2 == 0) {
             set_right_rgb(r_temp, g_temp, b_temp);
@@ -500,17 +500,17 @@ void rf_led_show(void) {
 
     if (rf_blink_cnt || (rf_link_show_time < RF_LINK_SHOW_TIME)) {
         if (dev_info.link_mode == LINK_RF_24) {
-            r_temp = 0x00;
-            g_temp = 0x80;
-            b_temp = 0x00;
+            r_temp = colour_lib[3][0]/2;
+            g_temp = colour_lib[3][1]/2;
+            b_temp = colour_lib[3][2]/2;
         } else if (dev_info.link_mode == LINK_USB) {
-            r_temp = 0x80;
-            g_temp = 0x60;
-            b_temp = 0x00;
+            r_temp = colour_lib[2][0]/2;
+            g_temp = colour_lib[2][1]/2;
+            b_temp = colour_lib[2][2]/2;
         } else {
-            r_temp = 0x00;
-            g_temp = 0x00;
-            b_temp = 0x80;
+            r_temp = colour_lib[5][0]/2;
+            g_temp = colour_lib[5][1]/2;
+            b_temp = colour_lib[5][2]/2;
         }
     } else {
         rf_blink_timer = timer_read32();
@@ -596,25 +596,25 @@ void bat_percent_led(uint8_t bat_percent) {
 
     if (bat_percent <= 15) {
         bat_end_led = 0;
-        bat_r = 0x80, bat_g = 0, bat_b = 0;
+        bat_r = colour_lib[0][0]/2, bat_g = colour_lib[0][1]/2, bat_b = colour_lib[0][2]/2;
     } else if (bat_percent <= 20) {
         bat_end_led = 1;
-        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
+        bat_r = colour_lib[1][0]/2, bat_g = colour_lib[1][1]/2, bat_b = colour_lib[1][2]/2;
     } else if (bat_percent <= 40) {
         bat_end_led = 2;
-        bat_r = 0x80, bat_g = 0x20, bat_b = 0;
+        bat_r = colour_lib[1][0]/2, bat_g = colour_lib[1][1]/2, bat_b = colour_lib[1][2]/2;
     } else if (bat_percent <= 60) {
         bat_end_led = 3;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = colour_lib[2][0]/2, bat_g = colour_lib[2][1]/2, bat_b = colour_lib[2][2]/2;
     } else if (bat_percent <= 80) {
         bat_end_led = 4;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = colour_lib[2][0]/2, bat_g = colour_lib[2][1]/2, bat_b = colour_lib[2][2]/2;
     } else if (bat_percent <= 95) {
         bat_end_led = 5;
-        bat_r = 0x80, bat_g = 0x40, bat_b = 0;
+        bat_r = colour_lib[2][0]/2, bat_g = colour_lib[2][1]/2, bat_b = colour_lib[2][2]/2;
     } else {
         bat_end_led = 5;
-        bat_r = 0, bat_g = 0x80, bat_b = 0;
+        bat_r = colour_lib[3][0]/2, bat_g = colour_lib[3][1]/2, bat_b = colour_lib[3][2]/2;
     }
 
     uint8_t i = 0;
@@ -689,9 +689,9 @@ void bat_led_show(void) {
                 bat_play_timer = timer_read32();
                 light_point_playing(0, 1, BREATHE_TAB_LEN, &play_point);
             }
-            r_temp = 0x80;
-            g_temp = 0x20;
-            b_temp = 0x00;
+            r_temp = colour_lib[1][0]/2;
+            g_temp = colour_lib[1][1]/2;
+            b_temp = colour_lib[1][2]/2;
             count_rgb_light(breathe_data_tab[play_point]);
             set_right_rgb(r_temp, g_temp, b_temp);
         } else {
@@ -713,8 +713,8 @@ void device_reset_show(void) {
 
     for (int blink_cnt = 0; blink_cnt < 3; blink_cnt++) {
         rgb_matrix_set_color_all(0x10, 0x10, 0x10);
-        set_left_rgb(0x40, 0x40, 0x40);
-        set_right_rgb(0x40, 0x40, 0x40);
+        set_left_rgb(colour_lib[7][0]/2, colour_lib[7][1]/2, colour_lib[7][2]/2);
+        set_right_rgb(colour_lib[7][0]/2, colour_lib[7][1]/2, colour_lib[7][2]/2);
         rgb_matrix_update_pwm_buffers();
         side_rgb_refresh();
         wait_ms(200);
