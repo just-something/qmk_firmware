@@ -44,7 +44,6 @@ bool f_rf_new_adv_ok    = 0;
 bool f_rf_reset         = 0;
 bool f_wakeup_prepare   = 0;
 bool f_sleep_press      = 0;
-bool rgb_enabled_before = 0;
 
 uint16_t       rf_linking_time       = 0;
 uint16_t       rf_link_show_time     = 0;
@@ -86,7 +85,6 @@ void    sleep_handle(void);
 void    bat_led_close(void);
 void    num_led_show(void);
 void    rgb_test_show(void);
-void    bat_num_show(bool);
 void    caps_mode_change(void);
 
 /**
@@ -701,9 +699,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
         case BAT_NUM:
             if (record->event.pressed) {
-                bat_num_show(1);
+                f_bat_num_show = 1;
             } else {
-                bat_num_show(0);
+                f_bat_num_show = 0;
             }
             return false;
 
@@ -868,20 +866,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-void bat_num_show(bool show) {
-    if (show) {
-        rgb_enabled_before = rgb_matrix_is_enabled();
-        if (!rgb_enabled_before) {
-            rgblight_enable_noeeprom();
-        }
-        f_bat_num_show = 1;
-    } else {
-        if (!rgb_enabled_before) {
-            rgblight_disable_noeeprom();
-        }
-        f_bat_num_show = 0;
-    }
-}
 
 void caps_mode_change(void) {
     if(caps_mode == 24) {
@@ -899,7 +883,6 @@ bool rgb_matrix_indicators_kb(void)
         return false;
     }
     if(f_bat_num_show) {
-        rgb_matrix_set_color_all(0x00, 0x00, 0x00);
         num_led_show();
     }
     rgb_matrix_set_color(RGB_MATRIX_LED_COUNT-1, 0, 0, 0);
