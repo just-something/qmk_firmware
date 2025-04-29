@@ -50,6 +50,7 @@ enum custom_keycodes {
 
     CAPS_MODE,
     RGB_DIM,
+    BAT_HOLD,
     MPREV_SINGLE,
     MNEXT_SINGLE,
     KC_INS_SINGLE,

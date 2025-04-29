@@ -204,6 +204,10 @@
 		"title": "Dim RGB Lighting"
 	},
 	{
+		"name": "Bat\nHold",
+		"title": "Show Battery on Hold"
+	},
+	{
 		"name": "Previous\nSingle",
 		"title": "Previous Single Tap"
 	},

@@ -730,6 +730,14 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case BAT_HOLD:
+            if (record->event.pressed) {
+                f_bat_hold = 1;
+            } else {
+                f_bat_hold = 0;
+            }
+            return false;
+
         case MPREV_SINGLE:
             if (record->event.pressed) {
                 register_code(KC_MPRV);
