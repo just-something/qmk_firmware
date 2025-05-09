@@ -87,6 +87,7 @@ void    bat_led_close(void);
 void    num_led_show(void);
 void    rgb_test_show(void);
 void    caps_mode_change(void);
+void    rgb_dim_switch(void);
 
 /**
  * @brief  gpio initial.
@@ -717,9 +718,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
         case RGB_DIM:
             if (record->event.pressed) {
-                rgb_dimmed = !rgb_dimmed;
-                user_config.rgb_dimmed = rgb_dimmed;
-                eeconfig_update_user_datablock(&user_config);
+                rgb_dim_switch();
             }
             return false;
             
@@ -892,6 +891,12 @@ void caps_mode_change(void) {
         caps_mode++;
     }
     user_config.caps_mode = caps_mode;
+    eeconfig_update_user_datablock(&user_config);
+}
+
+void rgb_dim_switch(void) {
+    rgb_dimmed = !rgb_dimmed;
+    user_config.rgb_dimmed = rgb_dimmed;
     eeconfig_update_user_datablock(&user_config);
 }
 
