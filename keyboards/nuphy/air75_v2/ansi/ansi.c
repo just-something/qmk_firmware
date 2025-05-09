@@ -688,7 +688,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
         case SLEEP_MODE:
             if (record->event.pressed) {
                 f_sleep_press = 1;
-                break_all_key();
             } else {
                 f_sleep_press = 0;
             }
